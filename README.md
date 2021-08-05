@@ -1,4 +1,4 @@
-# bigint
+# bigfloat [![Build Status](http://ci.100g.ir/api/badges/pgcontrib/bigfloat/status.svg)](http://ci.100g.ir/pgcontrib/bigfloat)
 
 bigint is a wrapper around math/big package to let us use big.int type in postgresql
 
@@ -17,7 +17,7 @@ This package uses math/big in its heart and extends its usefulnell even into pos
 import (
 	"net"
 
-	"github.com/d-fal/bigint"
+	"github.com/pgcontrib/bigfloat"
 	"github.com/go-pg/pg/v10"
 	"github.com/go-pg/pg/v10/orm"
 )
@@ -28,7 +28,7 @@ func main() {
 		Id        uint64
 		tableName struct{} `pg:"table_with_bigint"`
 		Name      string
-		Deposit   *bigint.Bigint
+		Deposit   *bigfloat.Float
 	}
 
 	db := pg.Connect(&pg.Options{
@@ -40,7 +40,7 @@ func main() {
 			"postgres-port",
 		),
 	})
-	err := db.Model((*TableWithBigint)(nil)).CreateTable(&orm.CreateTableOptions{
+	err := db.Model((*TableWithBigfloat)(nil)).CreateTable(&orm.CreateTableOptions{
 		Temp:          true,
 		FKConstraints: true,
 		IfNotExists:   true,
